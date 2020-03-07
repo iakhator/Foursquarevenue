@@ -45,6 +45,7 @@ function Venues() {
         }
       }
     fetchLocations()
+    return;
   }, [currentPos.latitude, currentPos.longitude]);
 
 
