@@ -90,17 +90,34 @@ function Venues() {
   return (
     <div className="venue">
       <div className="venue__search-input">
-        <input type="text" placeholder="Search locations" onChange={handleChange}/> <button onClick={handleSearch}>search</button>
+        <input
+          type="text"
+          placeholder="Search locations"
+          onChange={handleChange}
+        />{" "}
+        <button onClick={handleSearch}>search</button>
       </div>
       <div className="venue__content">
-        {loading ? <p>Loading...</p> :
-         (searchedLocations.length > 0 ? 
-        <SearchLocations locations={currentVenues} /> :<Locations locations={currentVenues} />
+        {loading ? (
+          <p data-testid="loading">Loading...</p>
+        ) : searchedLocations.length > 0 ? (
+          <SearchLocations locations={currentVenues} />
+        ) : (
+          <Locations locations={currentVenues} />
         )}
       </div>
-      { (currentVenues && currentVenues.length >= 0) ? <Pagination venuePerPage={venuePerPage} totalVenues={totalVenues} paginate={paginate} currentPage={currentPage}/> : ''}
+      {currentVenues && currentVenues.length >= 0 ? (
+        <Pagination
+          venuePerPage={venuePerPage}
+          totalVenues={totalVenues}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
+      ) : (
+        ""
+      )}
     </div>
-  )
+  );
 }
 
 export default Venues

@@ -11,7 +11,7 @@ function Pagination ({ venuePerPage, totalVenues, paginate, currentPage}) {
       {
         pageNumbers.map(number => (
           <li key={number} className="page-item">
-            <a onClick={() => paginate(number)} href="!#" className={`page-link ${currentPage === number ? 'active' : ''}`}>
+            <a onClick={() => paginate(number)} href="\#" className={`page-link ${currentPage === number ? 'active' : ''}`}>
               {number}
             </a>
           </li>
