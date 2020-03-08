@@ -69,8 +69,8 @@ function Venues() {
           setLoading(false)
         })
         .catch(error => {
-          console.log(error)
           setError(error.response.data.meta.errorDetail);
+          setLoading(false)
         });
     } else {
       setError('Input must not be empty')
@@ -100,7 +100,7 @@ function Venues() {
       <div className="venue__content">
         {loading ? (
           <p data-testid="loading">Loading...</p>
-        ) : searchedLocations.length > 0 ? (
+        ) : error ? <p>{error}</p> : searchedLocations.length > 0 ? (
           <SearchLocations locations={currentVenues} />
         ) : (
           <Locations locations={currentVenues} />
