@@ -1,20 +1,18 @@
 import React from 'react';
-import Icon from './Icon';
+import Card from './Card';
 
 function SearchLocation({ locations }) {
 
   return locations.map(location => (
-    <div key={location.id} className="card" data-testid="searchedlocations">
-      <div className="card__icon">
-        <Icon locationIcon={location.categories[0]} />
-      </div>
-      <div className="container">
-        <h4>
-          <b>{location.name}</b>
-        </h4>
-        <p>{location.location.address}</p>
-      </div>
-    </div>
+    <Card 
+      key={location.id} 
+      categories={location.categories[0]} 
+      name={location.name} 
+      address={location.location.formattedAddress}
+      city={location.location.city}
+      state={location.location.state}
+      country={location.location.country}
+      />
   ));
 }
 

@@ -49,10 +49,10 @@ describe('SearchLocations', () => {
   
   it("content exist ", () => {
     const { getByTestId } = render(<SearchLocations locations={locations} />);
-    expect(getByTestId("searchedlocations").textContent).toContain(
+    expect(getByTestId("locations").textContent).toContain(
       locations[0].name
     );
-    expect(getByTestId("searchedlocations").textContent).toContain(
+    expect(getByTestId("locations").textContent).toContain(
       locations[0].location.address
     );
   });

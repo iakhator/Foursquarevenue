@@ -12,7 +12,7 @@ function Venues() {
   const inputRef = useRef("");
   const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [venuePerPage] = useState(20);
+  const [venuePerPage] = useState(12);
 
   const getPosition = ({coords}) => {
     setCurrentPos({latitude: coords.latitude, longitude: coords.longitude});
@@ -75,10 +75,6 @@ function Venues() {
   const indexOfFirstVenue = indexOfLastVenue - venuePerPage;
   const currentVenues = searchedLocations.length > 0 ? searchedLocations.slice(indexOfFirstVenue, indexOfLastVenue) : locations.slice(indexOfFirstVenue, indexOfLastVenue)
   const totalVenues = searchedLocations.length || locations.length
-
-  useEffect(() => {
-    console.log(currentVenues, 'currentVenues')
-  })
 
   // change page
   const paginate = (pageNumber) => {

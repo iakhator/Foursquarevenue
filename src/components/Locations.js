@@ -1,30 +1,17 @@
 import React from 'react';
-
-import Icon from './Icon';
+import Card from './Card'
 
 function Locations ({locations}) {
-
   return locations.map(location => (
-      <div
-        key={location.venue.id}
-        className="card"
-        data-testid="locations"
-        data-toggle="modal"
-        data-target="#myModal"
-      >
-        <div className="card__icon">
-          <Icon locationIcon={location.venue.categories[0]} />
-        </div>
-        <div className="container">
-          <h4>
-            <b>Venue: {location.venue.name}</b>
-          </h4>
-          <p>
-            <b>Address: </b>
-            {location.venue.location.address}
-          </p>
-        </div>
-      </div>
+    <Card 
+      key={location.venue.id} 
+      categories={location.venue.categories[0]} 
+      name={location.venue.name} 
+      address={location.venue.location.formattedAddress}
+      city={location.venue.location.city}
+      state={location.venue.location.state}
+      country={location.venue.location.country}
+      />
   ));
 }
 
