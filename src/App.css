@@ -101,9 +101,42 @@ header nav ul li a{
   color: #1F222A;
 }
 
-.pagination .page-link.active {
+.pagination .page-link.active, .venue__search-input button {
   background-color: #1F222A;
   color: white;
 }
 
 .pagination .page-link:hover:not(.active) {background-color: #ddd;}
+
+
+.venue__search-input{
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.venue__search-input input {
+  padding: 10px;
+  width: 100%;
+}
+
+.venue__search-input input:focus, .venue__search-input input:active {
+  outline: none
+}
+
+.venue__search-input button {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.venue__search-input button:focus, .venue__search-input button:active {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+.venue__search-input{
+    width: 94%;
+    display: flex;
+  }
+}

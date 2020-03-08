@@ -64,9 +64,11 @@ describe("Locations", () => {
 
     expect(getByTestId("loading").textContent).toBe("Loading...");
 
-   await wait(() =>
-      expect(queryAllByTestId("locations").length).toBeGreaterThan(0)
+   const resolved = await waitForElement(() =>
+      getByTestId("locations")
     );
+
+    console.log(resolved)
   });
   
   it("fetches erroneously data", async () => {
