@@ -4,22 +4,27 @@ import Icon from './Icon';
 
 function Locations ({locations}) {
 
-  // const getVenueDetails = (Id) => {
-  //   console.log(Id);
-  // }
-
   return locations.map(location => (
-    <div key={location.venue.id} className="card" data-testid="locations">
-      <div className="card__icon">
-        <Icon locationIcon={location.venue.categories[0]} />
+      <div
+        key={location.venue.id}
+        className="card"
+        data-testid="locations"
+        data-toggle="modal"
+        data-target="#myModal"
+      >
+        <div className="card__icon">
+          <Icon locationIcon={location.venue.categories[0]} />
+        </div>
+        <div className="container">
+          <h4>
+            <b>Venue: {location.venue.name}</b>
+          </h4>
+          <p>
+            <b>Address: </b>
+            {location.venue.location.address}
+          </p>
+        </div>
       </div>
-      <div className="container">
-        <h4>
-          <b>{location.venue.name}</b>
-        </h4>
-        <p>{location.venue.location.address}</p>
-      </div>
-    </div>
   ));
 }
 
