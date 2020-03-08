@@ -38,6 +38,7 @@ header nav ul li a{
   margin-bottom: 46px;
   display: flex;
   margin-right: 15px;
+  cursor: pointer;
 }
 
 @media (max-width: 1124px) {
