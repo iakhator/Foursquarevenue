@@ -1,5 +1,6 @@
 import React from 'react';
 import {render, cleanup, fireEvent, wait, waitForElement} from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 import axiosMock from "axios";
 import Venues from '../pages/Venues';
 
@@ -49,7 +50,6 @@ const locations = [
   }
 ];
 
-jest.mock('axios')
 describe("Locations", () => { 
 
   beforeAll(() => locations);
@@ -57,18 +57,16 @@ describe("Locations", () => {
   afterEach(cleanup);
   
   it("renders location venues on currentlocation ", async () => {
-    axiosMock.get.mockResolvedValueOnce(() =>
+    axiosMock.get.mockResolvedValue(() =>
       Promise.resolve({ data: locations })
     );
-    const { getByTestId, queryAllByTestId } = render(<Venues />);
+    const { container, getByTestId, queryAllByTestId } = render(<Venues locations={locations}/>);
 
     expect(getByTestId("loading").textContent).toBe("Loading...");
 
-   const resolved = await waitForElement(() =>
-      getByTestId("locations")
-    );
-
-    console.log(resolved)
+    await wait(() => 
+      expect(queryAllByTestId("locations").length).toBeGreaterThan(0)
+    )
   });
   
   it("fetches erroneously data", async () => {

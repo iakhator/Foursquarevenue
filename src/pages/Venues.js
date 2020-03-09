@@ -87,25 +87,23 @@ function Venues() {
         <input ref={inputRef} type="text" placeholder="Search locations" />
         <button onClick={handleSearch}>search</button>
       </div>
-      <div className="venue__content">
-        {loading ? (
-          <p data-testid="loading">Loading...</p>
-        ) : error ? (
-          <p>{error}</p>
-        ) : searchedLocations.length > 0 ? (
-          <SearchLocations locations={currentVenues} />
-        ) : (
-          <Locations locations={currentVenues} />
-        )}
-      </div>
-      {totalVenues > 0 && (
-        <Pagination
-          venuePerPage={venuePerPage}
-          totalVenues={totalVenues}
-          paginate={paginate}
-          currentPage={currentPage}
-        />
-      )}
+      {loading ? <p data-testid="loading">Loading...</p> : error ? (
+        <p>{error}</p>
+        ) : <>
+          <div className="venue__content">
+          {searchedLocations.length > 0 ? (
+            <SearchLocations locations={currentVenues} />
+          ) : (
+            <Locations locations={currentVenues} />
+          )}
+        </div>
+          <Pagination
+            venuePerPage={venuePerPage}
+            totalVenues={totalVenues}
+            paginate={paginate}
+            currentPage={currentPage}
+          />
+        </>}
     </div>
   );
 }
