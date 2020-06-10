@@ -1,5 +1,5 @@
 import React from 'react';
-import Venue from './pages/Venue'
+import Venues from './pages/Venues'
 import Nav from './components/Nav'
 import './App.css';
 
@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Nav/>
-      <Venue />
+      <Venues />
     </>
   );
 }
