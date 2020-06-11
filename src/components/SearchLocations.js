@@ -1,11 +1,9 @@
 import React from 'react';
 import Card from './Card';
 
-function SearchLocation({ locations }) {
-
-  return locations.map(location => (
-    <Card 
-      key={location.id} 
+function SearchLocation({ location }) {
+  console.log(location)
+   return(<Card 
       categories={location.categories[0]} 
       name={location.name} 
       address={location.location.formattedAddress}
@@ -13,7 +11,7 @@ function SearchLocation({ locations }) {
       state={location.location.state}
       country={location.location.country}
       />
-  ));
+  )
 }
 
 export default SearchLocation
