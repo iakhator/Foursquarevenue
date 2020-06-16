@@ -14,8 +14,16 @@ function Venues() {
   const fetchData = async () => {
       setIsLoading(true)
       try {
+        const newVenues = []
         const result = await axios.get(`https://api.foursquare.com/v2/venues/search?client_id=SG11DRM1R5N4EGDASGJ1K2GSO4APKSASBUX1KXT2ZMZEGTOW&client_secret=24YFMBPNHLCXPLEDSBNSA4J4OF1LR2HAJMQYQCAE0NYOSZMI&v=20120610&near=${value}`);
-        setVenues(result.data.response.venues);
+        // if(result) {
+          // result.data.response.venues.forEach((ven) => {
+            // axios.get(`https://api.foursquare.com/v2/venues/${ven.id}?client_id=SG11DRM1R5N4EGDASGJ1K2GSO4APKSASBUX1KXT2ZMZEGTOW&client_secret=24YFMBPNHLCXPLEDSBNSA4J4OF1LR2HAJMQYQCAE0NYOSZMI&v=20120610`).then(res => {
+            //   newVenues.push(res.data.response.venue)
+            // })
+          // });
+          setVenues(result.data.response.venues);
+        // }
          setIsLoading(false)
       } catch (err) {
         setIsError('What you are looking for cannot be found');
@@ -24,7 +32,6 @@ function Venues() {
     };
 
   const handleSearch = (event) => {
-    console.log(isLoading)
     if(value) {
       fetchData()
       setIsError('');
@@ -40,7 +47,7 @@ function Venues() {
 
   // change page
   const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber)
+    setCurrentPage(pageNumber)           
   }
 
   return (
@@ -49,15 +56,17 @@ function Venues() {
         <input onChange={(e) => setValue(e.target.value) }  value={value} type="text" placeholder="Search locations" />
         <button onClick={handleSearch}>search</button>
       </div>
+      <div class="venue__content"> 
        {isError && <p>{isError}</p>}
        {isLoading ? (<p>Loading...</p>) : 
          (currentVenues.map(currentVenue => <Locations key={currentVenue.id} location={currentVenue} />))}
-         <Pagination
-            venuePerPage={venuePerPage}
-            totalVenues={totalVenues}
-            paginate={paginate}
-            currentPage={currentPage}
-          />
+      </div>
+       {venues.length > 0 && <Pagination
+          venuePerPage={venuePerPage}
+          totalVenues={totalVenues}
+          paginate={paginate}
+          currentPage={currentPage}
+        />}
     </div>
   );
 }
